@@ -1,0 +1,22 @@
+mixin featuredItemsPreview(slice)
+    div.row-centered-aired.featured-preview.flex-container
+        div.col-2.list-pane
+            ul
+                each featuredItem, i in slice.value.toArray()
+                    - var illustration = featuredItem.get("illustration")
+                    - var paneid = illustration? ('pane' + i): ''
+
+                    li(data-paneid = paneid)
+                        div.illustration.squared-image(style='background-image: url(' + illustration.getView("icon").url + ');')
+                        h3 !{featuredItem.get('title') ? featuredItem.get('title').asText() : ''}
+                        | !{featuredItem.get('summary') ? featuredItem.get('summary').asHtml() : ''}
+
+        div.col-2.preview-pane
+            each featuredItem, i in slice.value.toArray()
+                - var illustration = featuredItem.get("illustration")
+                if illustration
+                    div.preview-image(data-paneid="pane" + i, style='background-image: url(' + illustration.getView("main").url + ');')
+
+
+
+

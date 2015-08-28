@@ -1,0 +1,36 @@
+// To add a new slice type template should include the .jade template that has a Mixin that has same camelcased name.
+
+include ./prismic.jade
+include ./slices/slides.jade
+include ./slices/separator.jade
+include ./slices/featured-items.jade
+include ./slices/featured-items-mini.jade
+include ./slices/featured-items-simple.jade
+include ./slices/featured-items-preview.jade
+include ./slices/section-header.jade
+include ./slices/text.jade
+include ./slices/alternated-highlights.jade
+include ./slices/alternated-highlights-full.jade
+include ./slices/faq.jade
+include ./slices/contact-us.jade
+
+head
+    title !{doc.getText("page.title")}
+    link(rel="stylesheet", href="/stylesheets/reset.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
+    link(rel="stylesheet", href="/stylesheets/page.css")
+    link(rel="stylesheet", href="/stylesheets/font.css")
+    link(rel="stylesheet", href="/stylesheets/common.css")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    script(src="/javascripts/vendor/jquery-1.11.2.min.js")
+    script(src="/javascripts/slices.js")
+
+body.page
+    div.main
+        div#page-content
+            for slice in slices
+                if slice.sliceType != undefined
+                    // Find the right mixin for a slice type and label.
+                    +#{helpers.buildMixinName(slice.sliceType, slice.label)}(slice)
+    include ./footer.jade

@@ -1,0 +1,37 @@
+mixin alternatedHighlights(slice)
+    mixin button(url, content)
+        if url
+            a.button(href= url) !{content}
+        else
+            a.button !{content}
+
+    div.alternated-items
+        - var index = 0;
+        each alternatedHighlight in slice.value.toArray()
+            - var odd = (index % 2 != 0)
+            - var illustration = alternatedHighlight.get("illustration")? alternatedHighlight.get("illustration").getView("main") : null
+            - var altClass = odd ? "alternate" : ""
+            div(class= altClass)
+                div.row-centered.alternated-highlights.flex-container
+                    if !odd
+                        div.col-2
+                            - var backgroundStyle = 'background-image: url(' + illustration.url + ');'
+                            div.illustration.squared-image(style=backgroundStyle ? backgroundStyle : '')
+                    div.col-2
+                        div.text-wrapper
+                            h2 !{alternatedHighlight.get('title') ? alternatedHighlight.get('title').asText() : 'No title'}
+                            if alternatedHighlight.get('summary')
+                               | !{alternatedHighlight.get('summary').asHtml()}
+                            - var readMore = alternatedHighlight.get('read-more')
+                            - var readMoreLabel = alternatedHighlight.get('read-more-label')
+                            if readMoreLabel
+                                - var url = readMore ? ctx.linkResolver(readMore) : null
+                                - var content = readMoreLabel ? readMoreLabel.asText() : ''
+                                + button(url, content)
+                    if odd
+                        div.col-2
+                            - var backgroundStyle = 'background-image: url(' + illustration.url + ');'
+                            div.illustration.squared-image(style=backgroundStyle ? backgroundStyle : '')
+            - index = index + 1;
+
+

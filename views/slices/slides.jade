@@ -1,0 +1,20 @@
+mixin slides(slice)
+    div(class = "slides #{slice.label}")
+        - var slides = slice.value.toArray()
+        if(slides.length > 1)
+            a(href='#').arrow-prev &nbsp;
+        - var index = 0;
+        each slide in slides
+            - var illustration = slide.get("illustration").getView("main")
+            - var illustrationUrl = illustration ? illustration.url : ''
+            - var readMore = slide.get("read-more")
+            - var readMoreLabel = slide.get("read-more-label")
+            - var activeSlide = index == 0 ? ' active' : ''
+            div(class="slide#{activeSlide}", style='background-image: url(' + illustrationUrl + ');')
+                div.slide-container !{slide.get('title') ? slide.get('title').asHtml() : ''} !{slide.get('summary') ? slide.get('summary').asHtml() : ''}
+                    if readMoreLabel
+                        - var url = readMore ? ctx.linkResolver(readMore) : null
+                        a.button(href=url) button
+                - index = index + 1;
+        if(slides.length > 1)
+            a(href='#').arrow-next &nbsp;

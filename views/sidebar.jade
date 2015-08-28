@@ -1,0 +1,19 @@
+div.search
+    div.search-icon
+        i.fa.fa-search
+        get_search_form()
+div.sidebar-section
+    h3.blog-nav-item home_link('Home')
+foreach get_pages() as $page
+    div.sidebar-section
+        h3 page_link($page)
+        ul
+            foreach $page['children'] as $subpage)
+            li  page_link($subpage)
+
+div.sidebar-section
+    h3 Archives
+    ul
+        foreach get_calendar() as $entry
+            li
+                a(href="?= $entry['link'] ?"?= $entry['label'])

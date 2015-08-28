@@ -1,0 +1,23 @@
+mixin contactUs(slice)
+
+    - var items = slice.value.toArray();
+    - var contact = items[0];
+    div.row-centered-aired.contact-us.flex-container
+        div.col-2
+            form(name="contact-form", action="#")
+                input(type="hidden", name="mailto", value=contact.getText('mailto'))
+                div.form-group
+                    label(for="sender") !{contact.getText('email-label')}
+                    input(type="email", spellcheck="false", name="sender")
+                div.form-group
+                    label(for="subject") !{contact.getText('subject-label')}
+                    input(type="text" spellcheck="false" name="subject")
+                div.form-group
+                    label(for="message")  !{contact.getText('message-label')}
+                    textarea(name="message")
+                //input(type="hidden" name="pubkey" value="?= mailgun_pubkey()
+                button.send.button(disabled="disabled") Send
+                span.feedback(data-success= contact.getText('success-label'),  data-error= contact.getText('error-label'))
+        div.col-2
+            div.map(data-address=contact.getText('address'))
+            p.address !{contact.getText('address')}

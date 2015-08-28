@@ -1,0 +1,9 @@
+mixin faq(slice)
+    - var flexContainer = slice.label ? " flex-container" : ""
+    div(class= "row-centered-aired faq" + flexContainer)
+        - var opentag = false;
+        - var items = slice.value.toArray()
+        each faq in slice.value.toArray()
+            div(class= slice.label)
+                h3 !{faq.get('question') ? faq.get('question').asText() : 'Empty'}
+                | !{faq.get('answer') ? faq.get('answer').asHtml() : 'Empty'}

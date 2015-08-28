@@ -1,0 +1,24 @@
+mixin featuredItemsMini(slice)
+    mixin button(url, content)
+        if url
+            a.button(href= url) !{content}
+        else
+            a.button !{content}
+
+    div.row-centered-aired.featured-mini.flex-container
+        each featuredItem in slice.value.toArray()
+            - var illustration = featuredItem.get("illustration")
+            div.col-3
+                div.illustration.round-image(style='background-image: url(' + illustration.getView("icon").url + ');')
+                h3 !{featuredItem.get('title') ? featuredItem.get('title').asText() : ''}
+                | !{featuredItem.get('summary') ? featuredItem.get('summary').asHtml() : ''}
+
+                - var readMore = featuredItem.get('read-more')
+                - var readMoreLabel = featuredItem.get('read-more-label')
+                - var url = readMore ? ctx.linkResolver(readMore): null
+                if readMoreLabel
+                    - var content = readMoreLabel ? readMoreLabel.asText() : ''
+                    + button(url, content)
+
+
+

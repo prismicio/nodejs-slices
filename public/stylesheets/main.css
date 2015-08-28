@@ -1,0 +1,66 @@
+body {
+    font-family: 'PT Serif', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-family: 'Lato', sans-serif;
+}
+
+.button {
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    color: #0C0E57;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid #D8D8D8;
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-align: center;
+    background: none;
+}
+
+.main h3 {
+    margin: 0 0 16px 0;
+    line-height: 1.7rem;
+    font-size: 1rem;
+}
+
+.center {
+    text-align: center;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'StarterKit';
+    src: url('../fonts/starterkit.eot') format('eot');
+    src : url('../fonts/starterkit.woff') format('woff'),
+    url('../fonts/starterkit.svg#abcd') format('svg'),
+    url('../fonts/starterkit.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
