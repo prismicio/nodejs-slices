@@ -35,7 +35,7 @@ function getPage(uid, ctx, res, callback) {
               .send('Not found');
         }
         else if (docs.results[0].uid == uid) {
-          callback(doc.results[0])
+          callback(docs.results[0])
         } else res.redirect(("/" + docs.results[0].uid))
       })
 }
