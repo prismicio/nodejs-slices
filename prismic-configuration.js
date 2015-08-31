@@ -1,6 +1,6 @@
 exports.Configuration = {
 
-  apiEndpoint: 'http://fareseng.prismic.io/api',
+  apiEndpoint: 'https://blogtemplate.cdn.prismic.io/api',
 
   // -- Access token if the Master is not open
   // accessToken: 'xxxxxx',
